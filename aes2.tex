@@ -947,46 +947,47 @@ def key_expansion(key, rounds):
 
 \section{Analysis of AES}
 
-\begin{frame}{Analysis: AES vs Good Encryption}
+\begin{frame}{\hspace{1.5em}AES vs Good Encryption}
 	\begin{wide}
 	AES perfectly aligns with the criteria for good encryption:
 	
-	\vspace{1em}
-	\begin{itemize}
-		\onslide<1->{\item \textbf{Public Design:} Open NIST competition ensured review.}
-		\onslide<2->{\item \textbf{Shannon's Principles:} Exceptional confusion and diffusion.}
-		\onslide<3->{\item \textbf{Key Space:} Massive keys ensure brute-force resistance.}
-		\onslide<4->{\item \textbf{Attack Resistance:} Highly resilient against mathematical shortcuts.}
-		\onslide<5->{\item \textbf{Efficiency:} High speed across all types of devices.}
-	\end{itemize}
+	\vspace{1.5em}
+	\uncover<1->{\textbf{Public Design:} Open NIST competition ensured review.}
+	
+	\vspace{0.4em}
+	\uncover<2->{\textbf{Shannon's Principles:} Exceptional confusion and diffusion.}
+	
+	\vspace{0.4em}
+	\uncover<3->{\textbf{Key Space:} Massive keys ensure brute-force resistance.}
+	
+	\vspace{0.4em}
+	\uncover<4->{\textbf{Attack Resistance:} Highly resilient against mathematical shortcuts.}
+	
+	\vspace{0.4em}
+	\uncover<5->{\textbf{Efficiency:} High speed across all types of devices.}
 	\end{wide}
 \end{frame}
 
-\begin{frame}{Analysis: A Public, Well-Specified Design}
+\begin{frame}{AES: A Public, Well-Specified Design}
 	\begin{wide}
-	\begin{itemize}
-		\onslide<1->{\item \textbf{The Catalyst:} In 1997, NIST sought a replacement for the aging DES cipher.}
+		\vspace{1.5em}
+		\uncover<1->{\textbf{The Catalyst:} In 1997, NIST sought a replacement for the aging DES cipher.}
 		
-		\vspace{0.6em}
-		\onslide<2->{\item \textbf{The Crucible:} Instead of a secret design, NIST launched a 5-year open global competition with 15 candidates.}
+		\vspace{0.4em}
+		\uncover<2->{\textbf{The Crucible:} Instead of a secret design, NIST launched a 5-year open global competition with 15 candidates.}
 		
-		\vspace{0.6em}
-		\onslide<3->{\item \textbf{The Victory:} In 2000, \textit{Rijndael} won, defeating submissions from industry giants like IBM and RSA.}
-	\end{itemize}
+		\vspace{0.4em}
+		\uncover<3->{\textbf{The Victory:} In 2000, \textit{Rijndael} won, defeating submissions from industry giants like IBM and RSA.}
 	\end{wide}
 \end{frame}
 
 \begin{frame}{Global Trust Through Transparency}
 	\begin{wide}
-	\begin{itemize}
-		\onslide<1->{\item \textbf{Official Standard:} Published as FIPS 197, exposing its math for worldwide scrutiny.}
-		
-		\vspace{0.4em}
-		\onslide<2->{\item \textbf{Ultimate Endorsement:} First openly available cipher approved by the NSA for `Top Secret` data.}
-	\end{itemize}
+		\vspace{1.5em}
+		\uncover<1->{\textbf{Proven Standard:} Published openly as FIPS 197 and later approved by the NSA for `Top Secret` data, proving its mathematical resilience.}
 	
-	\vspace{0.5em}
-	\onslide<3->{
+	\vspace{1.2em}
+	\uncover<2->{
 	\begin{block}{\textbf{The Takeaway: Kerckhoffs's Principle}}
 		A cryptosystem must be secure even if everything about it (except the key) is public knowledge. AES earns trust not by hiding its mechanics, but by mathematically surviving decades of peer review.
 	\end{block}
@@ -998,15 +999,11 @@ def key_expansion(key, rounds):
 	\begin{wide}
 	\begin{columns}[T,onlytextwidth]
 		\column{0.68\textwidth}
-			\vspace{-1.2em}
-			\begin{itemize}
-				\onslide<1->{\item AES achieves confusion primarily through the SubBytes operation.}
+			\vspace{-0.5em}
+				\onslide<1->{AES achieves confusion primarily through the SubBytes operation.}\\[0.4em]
 				
-				\vspace{0.1em}
-				\onslide<2->{\item It utilizes a highly non-linear S-Box based on the multiplicative inverse in the Galois Field GF($2^8$).}
-			\end{itemize}
+				\onslide<2->{It utilizes a highly non-linear S-Box based on the multiplicative inverse in the Galois Field GF($2^8$).}\\[1.5em]
 			
-			\vspace{0.1em}
 			\onslide<3->{
 			\begin{block}{\textbf{The Result}}
 				The relationship between the ciphertext and the symmetric key is made incredibly complex, thwarting mathematical pattern recognition.
@@ -1015,8 +1012,9 @@ def key_expansion(key, rounds):
 		
 		\column{0.32\textwidth}
 			\onslide<1->{
-			\centering
-			\vspace{-1em}
+			\begin{center}
+			\vspace{1.5em}
+			\hspace{2.5em}
 			\begin{tikzpicture}[scale=0.75, transform shape]
 				\node[squarenode, fill=awesomeSlateBlue!30, align=center] (k) at (0, 2) {Key};
 				\node[squarenode, fill=awesomeSlateBlue!30, align=center] (c) at (0, -2) {Ciphertext};
@@ -1024,6 +1022,7 @@ def key_expansion(key, rounds):
 				\draw[thick, awesomeCharcoal, dashed] (k) -- node[right] {\small No clear link} (c);
 				\node[font=\Huge, text=buetAccent] at (0, 0) {?};
 			\end{tikzpicture}
+			\end{center}
 			}
 	\end{columns}
 	\end{wide}
@@ -1033,15 +1032,11 @@ def key_expansion(key, rounds):
 	\begin{wide}
 	\begin{columns}[T,onlytextwidth]
 		\column{0.68\textwidth}
-			\vspace{-1.2em}
-			\begin{itemize}
-				\onslide<1->{\item AES achieves diffusion via the ShiftRows and MixColumns operations.}
+			\vspace{-0.5em}
+				\onslide<1->{AES achieves diffusion via the ShiftRows and MixColumns operations.}\\[0.4em]
 				
-				\vspace{0.1em}
-				\onslide<2->{\item These steps ensure that every individual bit of the plaintext heavily influences multiple bits of the ciphertext.}
-			\end{itemize}
+				\onslide<2->{These steps ensure that every individual bit of the plaintext heavily influences multiple bits of the ciphertext.}\\[1.5em]
 			
-			\vspace{0.1em}
 			\onslide<3->{
 			\begin{alertblock}{\textbf{The Avalanche Effect}}
 				Statistically, flipping just a single bit in the 128-bit plaintext block alters approximately 50\% of the resulting ciphertext bits.
@@ -1050,8 +1045,9 @@ def key_expansion(key, rounds):
 		
 		\column{0.32\textwidth}
 			\onslide<1->{
-			\centering
-			\vspace{-1em}
+			\begin{center}
+			\vspace{1.5em}
+			\hspace{2em}
 			\begin{tikzpicture}[scale=0.70, transform shape]
 				\node[circle, draw=buetAccent, fill=buetAccent!20, minimum size=1.2cm, inner sep=1pt, align=center] (in) at (0, 2) {1 bit\\flip};
 				\node[rectangle, rounded corners, fill=awesomeSlateBlue!80, text=white, minimum width=2.5cm, minimum height=0.7cm, align=center] (aesop) at (0, 0.6) {AES Rounds};
@@ -1060,6 +1056,7 @@ def key_expansion(key, rounds):
 				\draw[arrow] (in) -- (aesop);
 				\draw[arrow] (aesop) -- (out);
 			\end{tikzpicture}
+			\end{center}
 			}
 	\end{columns}
 	\end{wide}
@@ -1070,19 +1067,17 @@ def key_expansion(key, rounds):
 	\begin{columns}[T,onlytextwidth]
 		\column{0.68\textwidth}
 			\vspace{-0.5em}
-			\begin{itemize}
-				\onslide<1->{\item AES mandates key lengths of 128, 192, or 256 bits, exponentially increasing the computational complexity of exhaustive search.}
+				\onslide<1->{AES mandates key lengths of 128, 192, or 256 bits, exponentially increasing the computational complexity of exhaustive search.}\\[0.8em]
 				
-				\vspace{0.8em}
-				\onslide<2->{\item A standard 128-bit key yields $2^{128}$ possible combinations (over 340 undecillion).}
+				\onslide<2->{A standard 128-bit key yields $2^{128}$ possible combinations (over 340 undecillion).}\\[0.8em]
 				
-				\vspace{0.8em}
-				\onslide<3->{\item A robust Key Expansion algorithm guarantees that every derived round key is cryptographically secure and unique.}
-			\end{itemize}
+				\onslide<3->{A robust Key Expansion algorithm guarantees that every derived round key is cryptographically secure and unique.}
 		
 		\column{0.32\textwidth}
 			\onslide<1->{
-			\centering
+			\begin{center}
+			\vspace{1em}
+			\hspace{2em}
 			\begin{tikzpicture}[scale=0.85, transform shape]
 				\node[roundednode, fill=awesomeCharcoal!80, text=white, minimum width=3cm] (k1) at (0, 1.5) {128-bit Key};
 				\node[roundednode, fill=awesomeCharcoal!80, text=white, minimum width=3cm] (k2) at (0, 0) {192-bit Key};
@@ -1090,6 +1085,7 @@ def key_expansion(key, rounds):
 				
 				\node[font=\Huge, text=awesomeForestGreen] at (2.5, 0) {\checkmark};
 			\end{tikzpicture}
+			\end{center}
 			}
 	\end{columns}
 	\end{wide}
@@ -1100,19 +1096,17 @@ def key_expansion(key, rounds):
 	\begin{columns}[T,onlytextwidth]
 		\column{0.68\textwidth}
 			\vspace{-0.5em}
-			\begin{itemize}
-				\onslide<1->{\item AES was explicitly designed to mathematically neutralize established cryptanalytic techniques.}
+				\onslide<1->{AES was explicitly designed to mathematically neutralize established cryptanalytic techniques.}\\[0.8em]
 				
-				\vspace{0.8em}
-				\onslide<2->{\item The algebraic complexity of the S-Box provides proven immunity against Differential and Linear Cryptanalysis.}
+				\onslide<2->{The algebraic complexity of the S-Box provides proven immunity against Differential and Linear Cryptanalysis.}\\[0.8em]
 				
-				\vspace{0.8em}
-				\onslide<3->{\item The rigorous key schedule mitigates vulnerabilities against Related-Key Attacks.}
-			\end{itemize}
+				\onslide<3->{The rigorous key schedule mitigates vulnerabilities against Related-Key Attacks.}
 		
 		\column{0.32\textwidth}
 			\onslide<1->{
-			\centering
+			\begin{center}
+			\vspace{1em}
+			\hspace{2em}
 			\begin{tikzpicture}[scale=0.85, transform shape]
 				\node[circle, fill=buetAccent!80, text=white, minimum size=1.5cm, align=center] (atk) at (0, 1.5) {Hacker\\Attack};
 				\node[rectangle, fill=awesomeForestGreen!80, text=white, minimum width=3cm, minimum height=0.6cm] (wall) at (0, -0.5) {AES Math Wall};
@@ -1122,6 +1116,7 @@ def key_expansion(key, rounds):
 				\draw[thick, buetAccent] (0, 0) -- (-0.5, 0.5); % bounce off
 				\draw[thick, buetAccent] (0, 0) -- (0.5, 0.5); % bounce off
 			\end{tikzpicture}
+			\end{center}
 			}
 	\end{columns}
 	\end{wide}
@@ -1132,20 +1127,17 @@ def key_expansion(key, rounds):
 	\begin{columns}[T,onlytextwidth]
 		\column{0.68\textwidth}
 			\vspace{-0.5em}
-			\begin{itemize}
-				\onslide<1->{\item AES avoids computationally heavy math, relying exclusively on fast operations like XOR and bit shifts.}
+				\onslide<1->{AES avoids computationally heavy math, relying exclusively on fast operations like XOR and bit shifts.}\\[0.8em]
 				
-				\vspace{0.8em}
-				\onslide<2->{\item It features widespread hardware acceleration; modern CPUs execute it directly at the silicon level via instruction sets like AES-NI.}
+				\onslide<2->{It features widespread hardware acceleration; modern CPUs execute it directly at the silicon level via instruction sets like AES-NI.}\\[0.8em]
 				
-				\vspace{0.8em}
-				\onslide<3->{\item \textbf{The Result:} Highly scalable performance, running seamlessly on everything from constrained IoT devices to enterprise servers.}
-			\end{itemize}
+				\onslide<3->{\textbf{The Result:} Highly scalable performance, running seamlessly on everything from constrained IoT devices to enterprise servers.}
 			
 		\column{0.32\textwidth}
 			\onslide<1->{
-			\centering
-			\vspace{-0.5em}
+			\begin{center}
+			\vspace{1.5em}
+			\hspace{2.5em}
 			\begin{tikzpicture}[scale=0.75, transform shape]
 				% Bar chart
 				\draw[thick, ->] (0,0) -- (4,0) node[right] {\footnotesize Devices};
@@ -1160,6 +1152,7 @@ def key_expansion(key, rounds):
 				\draw[fill=awesomeForestGreen!80] (2.9,0) rectangle (3.6,2.6);
 				\node[font=\scriptsize, align=center] at (3.25, -0.4) {Server\\(AES-NI)};
 			\end{tikzpicture}
+			\end{center}
 			}
 	\end{columns}
 	\end{wide}
@@ -1170,15 +1163,11 @@ def key_expansion(key, rounds):
 \begin{frame}{The Global Standard}
 	\begin{wide}
 	\vspace{-0.5em}
-	\begin{itemize}
-		\onslide<1->{\item \textbf{Ubiquity:} AES is the trusted standard securing daily digital life, from local Wi-Fi networks to international banking.}
+		\onslide<1->{\textbf{Ubiquity:} AES is the trusted standard securing daily digital life, from local Wi-Fi networks to international banking.}\\[1em]
 		
-		\vspace{1em}
-		\onslide<2->{\item \textbf{Cryptographic Elegance:} It flawlessly implements Shannon's principles of Confusion and Diffusion through simple but highly effective byte math.}
+		\onslide<2->{\textbf{Cryptographic Elegance:} It flawlessly implements Shannon's principles of Confusion and Diffusion through simple but highly effective byte math.}\\[1em]
 		
-		\vspace{1em}
-		\onslide<3->{\item \textbf{Future-Proof:} The AES-256 variant provides a robust security margin, widely considered safe even against future quantum computing threats.}
-	\end{itemize}
+		\onslide<3->{\textbf{Future-Proof:} The AES-256 variant provides a robust security margin, widely considered safe even against future quantum computing threats.}
 	\end{wide}
 \end{frame}
 
@@ -1198,10 +1187,9 @@ def key_expansion(key, rounds):
 	\end{center}
 	\vspace{2.5em}
 	\onslide<2->{
-	\centering
-	\Large \textbf{Thank You} \\
-	\vspace{0.5em}
-	\normalsize Questions?
+	\begin{center}
+	\Large \textbf{Thank You}
+	\end{center}
 	}
 	\end{wide}
 \end{frame}
