@@ -104,9 +104,16 @@
 		\item Foundation of modern digital security
 	\end{itemize}}
 	
-	\only<2>{\textbf{Why AES Matters:} \\
-		AES secures billions of online transactions, communications, and data storage operations every day. By doing so, it helps create a safer digital world where privacy and trust are possible.}
 	\end{wide}
+\end{frame}
+
+\begin{frame}
+\begin{wide}
+\begin{center}
+    \textcolor{red}{\textbf{Wait!!}} \\
+		What even is encryption? What does it do, and why do we need it in the first place? This are the questions we will answer before diving into the AES algorithm itself.
+\end{center}
+\end{wide}
 \end{frame}
 
 \section{Understanding Encryption}
@@ -209,6 +216,14 @@
 	\end{wide}
 \end{frame}
 
+\begin{frame}
+\begin{wide}
+\begin{center}
+    \textcolor{red}{\textbf{Now that we understand what encryption is and why it matters, let's dive into the AES algorithm itself!}}
+\end{center}
+\end{wide}
+\end{frame}
+
 \section{Rijndael Algorithm}
 
 
@@ -229,6 +244,7 @@
 	\end{wide}
 \end{frame}
 
+\subsection{Key Expansion}
 \begin{frame}{AES Core Operations}
 	\begin{wide}
     \begin{itemize}
@@ -241,14 +257,12 @@
 	\end{wide}
 \end{frame}
 
-\subsection{Key Expansion}
-
 
 \begin{frame}{Key Expansion Process}
     \begin{wide}
     
     \begin{itemize}
-        \item Expands cipher key into round keys using mathematical transformations.
+        \item Expands cipher key into round keys using mathematical transformations from 4 input words.
         \item Number of round keys depends on key size:
         \begin{itemize}
             \item \Large{128-bit key: 11 round keys}
@@ -347,7 +361,7 @@ def key_expansion(key, rounds):
     \vspace{0.5em}
     \end{onlyenv}
     \begin{onlyenv}<2->
-        \textbf{Complete Formula:} $\text{Word}_{i+4} = \text{Word}_i \oplus g(\text{Word}_{i+3})$ where $g(w) = \text{SubWord}(\text{RotWord}(w)) \oplus \text{Rcon}[i+3]$ \\
+        \textbf{Complete Formula:} $\text{Word}_{i+4} = \text{Word}_i \oplus g(\text{Word}_{i+3})$ where $g(w) = \text{SubWord}(\text{RotWord}(w)) \oplus \text{Rcon}[i]$ \\ \vspace{1em}
         \textbf{Key Insight:} Each word depends on previous word and word from 4 positions back, creating avalanche effect across round keys.
     \end{onlyenv}
     \end{wide}
@@ -366,7 +380,7 @@ def key_expansion(key, rounds):
         header/.style={roundednode, rnd, lw, minimum width=3.5cm, minimum height=0.8cm, align=center, font=\tiny\bfseries, fill=buetAccent, text=white}
     ]
         % Left Grid (Word 3 - input)
-        \node[header] (h1) at (-3.5, 2.8) {Word 3 (Input)};
+        \node[header] (h1) at (-3.5, 2.8) {Word i+3 (Input)};
         \matrix (m1) [grid] at (-3.5, 0.8) {
             x \\
             y \\
@@ -467,7 +481,7 @@ def key_expansion(key, rounds):
 \end{frame}
 
 
-\begin{frame}[fragile]{Key Expansion Simulation: Step 3 - Rcon XOR}
+\begin{frame}[fragile]{Key Expansion Simulation: Step 3 - \\ Rcon XOR}
     \begin{wide}
     \centering
     \begin{tikzpicture}[
@@ -538,7 +552,7 @@ def key_expansion(key, rounds):
         header/.style={roundednode, rnd, lw, minimum width=3.5cm, minimum height=0.8cm, align=center, font=\tiny\bfseries, fill=buetAccent, text=white}
     ]
         % Left Grid (g-function output)
-        \node[header] (h1) at (-3.5, 2.8) {g(Word 3)};
+        \node[header] (h1) at (-3.5, 2.8) {g(Word i+3)};
         \matrix (m1) [grid] at (-3.5, 0.8) {
             a \\
             b \\
@@ -567,7 +581,7 @@ def key_expansion(key, rounds):
         \node[header, minimum width=2.5cm, fill=awesomeForestGreen] at (0, 2.8) {XOR with Word 0};
 
         % Right: Word 0 → New Word 4
-        \node[header] (h2) at (3.5, 2.8) {\only<1>{Word 0}\only<2->{New Word 4}};
+        \node[header] (h2) at (3.5, 2.8) {\only<1>{Word i}\only<2->{New Word i+4}};
         \matrix (m2) [grid] at (3.5, 0.8) {
             \only<1>{A}\only<2->{A$\oplus$a} \\
             \only<1>{z}\only<2->{z$\oplus$b} \\
@@ -581,12 +595,13 @@ def key_expansion(key, rounds):
         \draw[arrow, visible on=<2->, buetAccent] (g.east) -- (m2.west);
         
         % XOR symbol
-        \node[font=\Large\bfseries, text=buetAccent, visible on=<1>] at (1.8, 0.8) {$\oplus$};
+        \node[font=\Large\bfseries, text=buetAccent, visible on=<1>] at (2.8, 1.1) {$\oplus$};
     \end{tikzpicture}
     \vspace{0.8em}
     \end{wide}
 \end{frame}
 
+\subsection{SubBytes}
 \begin{frame}{AES Core Operations}
 	\begin{wide}
     \begin{itemize}
@@ -598,8 +613,6 @@ def key_expansion(key, rounds):
     \end{itemize}
 	\end{wide}
 \end{frame}
-
-\subsection{SubBytes}
 
 
 \begin{frame}{SubBytes: Non-linear Substitution}
@@ -726,7 +739,7 @@ def key_expansion(key, rounds):
 	\end{wide}
 \end{frame}
 
-
+\subsection{ShiftRows   }
 \begin{frame}{AES Core Operations}
 	\begin{wide}
     \begin{itemize}
@@ -738,8 +751,6 @@ def key_expansion(key, rounds):
     \end{itemize}
 	\end{wide}
 \end{frame}
-
-\subsection{ShiftRows}
 
 
 \begin{frame}{ShiftRows: Diffusion}
@@ -814,6 +825,7 @@ def key_expansion(key, rounds):
 	\end{wide}
 \end{frame}
 
+\subsection{MixColumns}
 \begin{frame}{AES Core Operations}
 	\begin{wide}
     \begin{itemize}
@@ -825,8 +837,6 @@ def key_expansion(key, rounds):
     \end{itemize}
 	\end{wide}
 \end{frame}
-
-\subsection{MixColumns}
 
 
 \begin{frame}{MixColumns: Theory}
@@ -943,6 +953,7 @@ def key_expansion(key, rounds):
 	\end{wide}
 \end{frame}
 
+\subsection{AddRoundKey}
 \begin{frame}{AES Core Operations}
 	\begin{wide}
     \begin{itemize}
@@ -954,8 +965,6 @@ def key_expansion(key, rounds):
     \end{itemize}
 	\end{wide}
 \end{frame}
-
-\subsection{AddRoundKey}
 
 
 \begin{frame}{AddRoundKey: Final Transformation}
@@ -1136,6 +1145,7 @@ def key_expansion(key, rounds):
 
         \column{0.45\textwidth}
             \centering
+            \vspace{1.5em}
             \begin{tikzpicture}[scale=0.95, transform shape]
                 \node[roundednode, fill=awesomeSlateBlue!20, minimum width=2.6cm] (pt) at (0,4.1) {\small Plaintext};
                 \node[roundednode, fill=awesomeSlateBlue!20, minimum width=2.6cm] (k)  at (3,4.1) {\small Key};
@@ -1177,6 +1187,7 @@ def key_expansion(key, rounds):
 
         \column{0.45\textwidth}
             \centering
+            \vspace{2em}
             \begin{tikzpicture}[scale=0.92, transform shape]
                 \node[font=\scriptsize, anchor=east] at (-0.35,3.60) {Plaintext:};
                 \foreach \i/\b in {0/1,1/0,2/1,3/0,4/1,5/1,6/0,7/1} {
@@ -1256,6 +1267,7 @@ def key_expansion(key, rounds):
 
         \column{0.32\textwidth}
             \onslide<1->{
+            \vspace{0.5em}
             \begin{center}
             \vspace{1em}
             \hspace{2em}
@@ -1291,7 +1303,7 @@ def key_expansion(key, rounds):
         \column{0.32\textwidth}
             \onslide<1->{
             \begin{center}
-            \vspace{1em}
+            \vspace{-1.5em}
             \hspace{2em}
             \begin{tikzpicture}[scale=0.85, transform shape]
                 \node[circle, fill=buetAccent!80, text=white, minimum size=1.5cm, align=center] (atk) at (0, 1.5) {Hacker\\Attack};
@@ -1302,6 +1314,7 @@ def key_expansion(key, rounds):
                 \draw[thick, buetAccent] (0, 0) -- (-0.5, 0.5);
                 \draw[thick, buetAccent] (0, 0) -- (0.5, 0.5);
             \end{tikzpicture}
+            \vspace{1.2em}
             \end{center}
             }
     \end{columns}
